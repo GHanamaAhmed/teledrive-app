@@ -35,22 +35,29 @@ const App = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="flex gap-2 justify-around w-full py-5">
+      <div className="flex gap-2 justify-around items-center w-full py-5">
         <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
+          id="SvgjsSvg1011"
+          width={50}
+          height={50}
           xmlns="http://www.w3.org/2000/svg"
+          version="1.1"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
+          xmlns:svgjs="http://svgjs.com/svgjs"
         >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24ZM12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z"
-            fill="#1677FF"
-          />
+          <defs id="SvgjsDefs1012" />
+          <g id="SvgjsG1013">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={50} height={50}>
+              <path
+                d="M16.114 9.291c.552-.552 1.1-1.84-1.2-.276a395.806 395.806 0 0 1-6.489 4.372 2.7 2.7 0 0 1-2.117.046c-1.38-.414-2.991-.966-2.991-.966s-1.1-.691.783-1.427c0 0 7.961-3.267 10.722-4.418 1.058-.46 4.647-1.932 4.647-1.932s1.657-.645 1.519.92c-.046.644-.414 2.9-.782 5.338-.553 3.451-1.151 7.225-1.151 7.225s-.092 1.058-.874 1.242a3.787 3.787 0 0 1-2.3-.828c-.184-.138-3.451-2.209-4.648-3.221a.872.872 0 0 1 .046-1.473 169.31 169.31 0 0 0 4.835-4.602Z"
+                fill="#156fef"
+                className="color000 svgShape"
+              />
+            </svg>
+          </g>
         </svg>
-        <p className="text-xl font-semibold">Company</p>
+
+        <p className="text-xl font-Poppins text-high">teledrive</p>
       </div>
       <Menu
         mode="inline"

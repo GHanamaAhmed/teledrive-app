@@ -5,14 +5,23 @@ import { setChonkyDefaults, ChonkyActions } from 'chonky'
 import { ChonkyIconFA } from 'chonky-icon-fontawesome'
 import { SyncOutlined } from '@ant-design/icons'
 import { systemContext } from '../context/systemContext'
+import CustomModal from './modal'
 export default function FileSysytem() {
   setChonkyDefaults({ iconComponent: ChonkyIconFA })
   const { files, filesChain, path, setPath } = React.useContext(systemContext)
+  const [selectedFiles, setSelectedFiles] = React.useState([])
   const [isSync, setIsSync] = React.useState(false)
+  const [isRModalOpen, setIsRModalOpen] = React.useState(false)
   const fileActions = React.useMemo(
     () => [
       ChonkyActions.CreateFolder,
-      ChonkyActions.DeleteFiles,
+      {
+        ...ChonkyActions.DeleteFiles,
+        effect: (e) => {
+          setSelectedFiles(e?.state?.selectedFiles)
+          setIsRModalOpen(true)
+        }
+      },
       {
         id: 'syncTele',
         button: {
@@ -21,7 +30,7 @@ export default function FileSysytem() {
           icon: <SyncOutlined width={50} height={50} />
         },
         effect: ({ payload }) => {
-         setIsSync(prev=>!prev)
+          setIsSync((prev) => !prev)
           return true
         }
       }
@@ -47,19 +56,47 @@ export default function FileSysytem() {
     },
     [path]
   )
+  const removeFiles = React.useCallback(() => {
+    if (selectedFiles.length > 0) {
+      const request = {
+        action: 'delete',
+        data: [
+          selectedFiles.map((file) => ({
+            filterPath: path,
+            item: file?.name
+          }))
+        ]
+      }
+      Axios.post('/', request)
+        .then((res) => {
+          console.log(res)
+          setSelectedFiles([])
+        })
+        .catch((err) => console.error(err))
+    }
+    setIsRModalOpen(false)
+  }, [selectedFiles])
+  const closeRModal = React.useCallback(() => {
+    setIsRModalOpen(false)
+  }, [isRModalOpen])
   return (
-    <FileBrowser
-      key={3}
-      onFileAction={fileActionHandler}
-      ref={fileBrowserRef}
-      files={files}
-      folderChain={filesChain}
-      fileActions={fileActions}
-    >
-      <FileNavbar />
-      <FileToolbar />
-      <FileList />
-      <FileContextMenu />
-    </FileBrowser>
+    <>
+      <CustomModal isModalOpen={isRModalOpen} onOk={removeFiles} onCancel={closeRModal}>
+        <p>Are you sure you want to delete the selected files?</p>
+      </CustomModal>
+      <FileBrowser
+        key={3}
+        onFileAction={fileActionHandler}
+        ref={fileBrowserRef}
+        files={files}
+        folderChain={filesChain}
+        fileActions={fileActions}
+      >
+        <FileNavbar />
+        <FileToolbar />
+        <FileList />
+        <FileContextMenu />
+      </FileBrowser>
+    </>
   )
 }

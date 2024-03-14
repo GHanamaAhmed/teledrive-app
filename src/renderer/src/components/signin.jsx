@@ -8,27 +8,31 @@ export default function Signin() {
       <div className="flex-1 h-full flex justify-center items-center relative bg-[#050A24]">
         <Frame />
         <svg
-          xmlns="http://www.w3.org/2000/svg"
-          version="1.1"
-          width="256px"
-          height="256px"
-          style={{
-            shapeRendering: 'geometricPrecision',
-            textRendering: 'geometricPrecision',
-            imageRendering: 'optimizeQuality',
-            fillRule: 'evenodd',
-            clipRule: 'evenodd'
-          }}
-          xmlnsXlink="http://www.w3.org/1999/xlink"
-        >
-          <g>
-            <path
-              style={{ opacity: '0.988' }}
-              fill="#fefffe"
-              d="M 84.5,-0.5 C 89.5,-0.5 94.5,-0.5 99.5,-0.5C 119.64,3.45835 134.14,14.7917 143,33.5C 165.68,26.5142 183.014,33.1809 195,53.5C 196.145,56.4318 196.978,59.4318 197.5,62.5C 227.202,59.5614 246.535,72.2281 255.5,100.5C 255.5,107.167 255.5,113.833 255.5,120.5C 250.234,141.598 236.9,154.431 215.5,159C 155.5,159.667 95.5,159.667 35.5,159C 16.7532,154.418 4.75319,142.918 -0.5,124.5C -0.5,118.167 -0.5,111.833 -0.5,105.5C 5.7173,84.6281 19.7173,72.6281 41.5,69.5C 34.4367,44.1898 41.4367,23.6898 62.5,8C 69.4613,3.85231 76.7946,1.01898 84.5,-0.5 Z"
-            />
-          </g>
-        </svg>
+  id="SvgjsSvg1011"
+  width={256}
+  height={256}
+  xmlns="http://www.w3.org/2000/svg"
+  version="1.1"
+  xmlnsXlink="http://www.w3.org/1999/xlink"
+  xmlns:svgjs="http://svgjs.com/svgjs"
+>
+  <defs id="SvgjsDefs1012" />
+  <g id="SvgjsG1013">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={256}
+      height={256}
+    >
+      <path
+        d="M16.114 9.291c.552-.552 1.1-1.84-1.2-.276a395.806 395.806 0 0 1-6.489 4.372 2.7 2.7 0 0 1-2.117.046c-1.38-.414-2.991-.966-2.991-.966s-1.1-.691.783-1.427c0 0 7.961-3.267 10.722-4.418 1.058-.46 4.647-1.932 4.647-1.932s1.657-.645 1.519.92c-.046.644-.414 2.9-.782 5.338-.553 3.451-1.151 7.225-1.151 7.225s-.092 1.058-.874 1.242a3.787 3.787 0 0 1-2.3-.828c-.184-.138-3.451-2.209-4.648-3.221a.872.872 0 0 1 .046-1.473 169.31 169.31 0 0 0 4.835-4.602Z"
+        fill="#fefffe"
+        className="color000 svgShape"
+      />
+    </svg>
+  </g>
+</svg>
+
       </div>
       <div className="flex-1 h-full w-full flex justify-center items-center">
         <div className="w-6/12 flex flex-col gap-4 items-center">

@@ -1,12 +1,12 @@
 import * as React from 'react'
 import Navigation from './components/navigation'
 import FileSysytem from './components/FileSysytem'
-import { createBrowserRouter, createRoutesFromElements, Route, Outlet } from 'react-router-dom'
+import {  createRoutesFromElements, Route, Outlet, createHashRouter } from 'react-router-dom'
 import SyncFiles from './components/syncFiles'
 import TelegramFiles from './components/telegramFiles'
 import Signin from './components/signin'
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   createRoutesFromElements(
     <Route path="/">
       <Route path="" element={<Signin />} />,

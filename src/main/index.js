@@ -1,8 +1,8 @@
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
-import { join } from 'path'
+import path, { join, resolve } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-
+import server from './server/main'
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -16,10 +16,20 @@ function createWindow() {
       sandbox: false
     }
   })
+  startServer()
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
-
+  function startServer() {
+    /*jshint esversion: 8 */
+    // var runPort = 8090
+    // const run = server.listen(runPort, function () {
+    //   run.setTimeout(10 * 60 * 1000)
+    //   var host = run.address().address
+    //   var port = run.address().port
+    //   console.log('Example app listening at http://%s:%s', host, port)
+    // })
+  }
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
     return { action: 'deny' }
