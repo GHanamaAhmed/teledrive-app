@@ -21,14 +21,13 @@ function createWindow() {
     mainWindow.show()
   })
   function startServer() {
-    /*jshint esversion: 8 */
-    // var runPort = 8090
-    // const run = server.listen(runPort, function () {
-    //   run.setTimeout(10 * 60 * 1000)
-    //   var host = run.address().address
-    //   var port = run.address().port
-    //   console.log('Example app listening at http://%s:%s', host, port)
-    // })
+    var runPort = 8090
+    const run = server.listen(runPort, function () {
+      run.setTimeout(10 * 60 * 1000)
+      var host = run.address().address
+      var port = run.address().port
+      console.log('Example app listening at http://%s:%s', host, port)
+    })
   }
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
@@ -42,7 +41,7 @@ function createWindow() {
   } else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished

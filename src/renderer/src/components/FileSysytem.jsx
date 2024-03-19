@@ -6,9 +6,10 @@ import { ChonkyIconFA } from 'chonky-icon-fontawesome'
 import { SyncOutlined } from '@ant-design/icons'
 import { systemContext } from '../context/systemContext'
 import CustomModal from './modal'
+import { Button, Modal, Space } from 'antd'
 export default function FileSysytem() {
   setChonkyDefaults({ iconComponent: ChonkyIconFA })
-  const { files, filesChain, path, setPath } = React.useContext(systemContext)
+  const { files, setFiles, filesChain, path, setPath } = React.useContext(systemContext)
   const [selectedFiles, setSelectedFiles] = React.useState([])
   const [isSync, setIsSync] = React.useState(false)
   const [isRModalOpen, setIsRModalOpen] = React.useState(false)
@@ -19,7 +20,17 @@ export default function FileSysytem() {
         ...ChonkyActions.DeleteFiles,
         effect: (e) => {
           setSelectedFiles(e?.state?.selectedFiles)
-          setIsRModalOpen(true)
+          Modal.info({
+            title: 'Delete Files',
+            content: <p>Are you sure you want to delete the selected files?</p>,
+            okCancel: true,
+            onOk() {
+              removeFiles()
+            },
+            onCancel() {
+              closeRModal()
+            }
+          })
         }
       },
       {
@@ -60,17 +71,18 @@ export default function FileSysytem() {
     if (selectedFiles.length > 0) {
       const request = {
         action: 'delete',
-        data: [
-          selectedFiles.map((file) => ({
-            filterPath: path,
-            item: file?.name
-          }))
-        ]
+        data: selectedFiles.map((file) => ({
+          filterPath: path,
+          name: file?.name
+        }))
       }
       Axios.post('/', request)
         .then((res) => {
-          console.log(res)
           setSelectedFiles([])
+
+          setFiles((prev) =>
+            prev.filter((e) => !JSON.parse(res.data)?.files?.find((el) => el.name == e.name))
+          )
         })
         .catch((err) => console.error(err))
     }
@@ -81,9 +93,9 @@ export default function FileSysytem() {
   }, [isRModalOpen])
   return (
     <>
-      <CustomModal isModalOpen={isRModalOpen} onOk={removeFiles} onCancel={closeRModal}>
-        <p>Are you sure you want to delete the selected files?</p>
-      </CustomModal>
+      {/* <CustomModal isModalOpen={isRModalOpen} onOk={removeFiles} onCancel={closeRModal}>
+        
+      </CustomModal> */}
       <FileBrowser
         key={3}
         onFileAction={fileActionHandler}
@@ -91,6 +103,7 @@ export default function FileSysytem() {
         files={files}
         folderChain={filesChain}
         fileActions={fileActions}
+        disableDragAndDrop={true}
       >
         <FileNavbar />
         <FileToolbar />
